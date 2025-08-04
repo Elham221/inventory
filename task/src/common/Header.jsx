@@ -9,8 +9,8 @@ const Header = ({ title, subtitle }) => {
     <Box mb="30px"
     display="flex"
     flexDirection="column"
-    alignItems="center"
-    textAlign="center"
+    alignItems="flex-start"
+    textAlign="left"
     >
       <Typography
         variant="h4"

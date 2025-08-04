@@ -116,7 +116,7 @@ const CreateCustomer = () => {
 
   return (
     <Box m="15px">
-      <Header title="Customer Registration" subtitle="" />
+      <Header title="Registration" subtitle="" />
 
       <Formik
         initialValues={initialValues}
@@ -320,6 +320,7 @@ const CreateCustomer = () => {
               <MenuItem value="Phone">Phone</MenuItem>
               <MenuItem value="Email">Email</MenuItem>
               <MenuItem value="Address">Address</MenuItem>
+              <MenuItem value="Tax Center">Tax Center</MenuItem>
             </Select>
           </FormControl>
 
@@ -330,7 +331,13 @@ const CreateCustomer = () => {
             sx={{ flex: 1 }}
           />
         </Box>
-
+<Box mt={5}
+        sx={{
+          minHeight: 150,
+          padding: 2,
+          border: '1px solid #ccc',
+          borderRadius: 1,
+        }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -355,13 +362,14 @@ const CreateCustomer = () => {
             )}
           </TableBody>
         </Table>
+        </Box>
 
         <Box mt={2} display="flex" justifyContent="flex-start">
           <Button
             variant="contained"
+            color='secondary'
             onClick={handleAddInfo}
-            disabled={!additionalInfo || !additionalValue}
-          >
+            >
             Save
           </Button>
         </Box>

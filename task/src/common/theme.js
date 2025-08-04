@@ -60,6 +60,17 @@ export const tokens = (mode) => ({
           800: "#2a2d64",
           900: "#151632",
         },
+        purpleAccent: {
+          100: "#e6ccff",
+          200: "#cc99ff",
+          300: "#b266ff",
+          400: "#9933ff",
+          500: "#8000ff",
+          600: "#6600cc",
+          700: "#4d0099",
+          800: "#330066",
+          900: "#1a0033",
+        },
       }
     : {
         grey: {
@@ -77,7 +88,7 @@ export const tokens = (mode) => ({
           100: "#040509",
           200: "#080b12",
           300: "#0c101b",
-          400: "#f2f0f0", // manually changed
+          400: "#f2f0f0",
           500: "#141b2d",
           600: "#1F2A40",
           700: "#727681",
@@ -117,6 +128,17 @@ export const tokens = (mode) => ({
           800: "#c3c6fd",
           900: "#e1e2fe",
         },
+        purpleAccent: {
+          100: "#1a0033",
+          200: "#330066",
+          300: "#4d0099",
+          400: "#6600cc",
+          500: "#8000ff",
+          600: "#9933ff",
+          700: "#b266ff",
+          800: "#cc99ff",
+          900: "#e6ccff",
+        },
       }),
 });
 
@@ -128,107 +150,53 @@ export const themeSettings = (mode) => {
       mode: mode,
       ...(mode === "dark"
         ? {
-            // palette values for dark mode
-            primary: {
-              main: colors.primary[500],
-            },
-            secondary: {
-              main: colors.greenAccent[500],
-            },
+            primary: { main: colors.primary[500] },
+            secondary: { main: colors.greenAccent[500] },
+            purple: { main: colors.purpleAccent[500] },
             neutral: {
               dark: colors.grey[700],
               main: colors.grey[500],
               light: colors.grey[100],
             },
-            background: {
-              default: colors.primary[100],
-            },
-            text: {
-              primary: colors.grey[100], // light text for dark mode
-              secondary: colors.grey[300],
-            },
+            background: { default: "#fcfcfc" },
+            text: { primary: "#060505ff" },
           }
         : {
-            // palette values for light mode
-            primary: {
-              main: colors.primary[100],
-            },
-            secondary: {
-              main: colors.greenAccent[500],
-            },
+            primary: { main: colors.primary[100] },
+            secondary: { main: colors.greenAccent[500] },
+            purple: { main: colors.purpleAccent[500] },
             neutral: {
               dark: colors.grey[700],
               main: colors.grey[500],
               light: colors.grey[100],
             },
-            background: {
-              default: "#ffffff",  // changed to pure white
-            },
-            text: {
-              primary: "#333333", // dark gray text
-              secondary: colors.grey[700],
-            },
+            background: { default: "#fcfcfc" },
           }),
     },
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
       fontSize: 12,
-      allVariants: {
-        color: mode === "light" ? "#333333" : colors.grey[100], // all text dark gray in light mode
-      },
-      h1: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 40,
-      },
-      h2: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 32,
-      },
-      h3: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 24,
-      },
-      h4: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 20,
-      },
-      h5: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 16,
-      },
-      h6: {
-        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 14,
-      },
+      h1: { fontFamily: ["Source Sans Pro", "sans-serif"].join(","), fontSize: 40 },
+      h2: { fontFamily: ["Source Sans Pro", "sans-serif"].join(","), fontSize: 32 },
+      h3: { fontFamily: ["Source Sans Pro", "sans-serif"].join(","), fontSize: 24 },
+      h4: { fontFamily: ["Source Sans Pro", "sans-serif"].join(","), fontSize: 20 },
+      h5: { fontFamily: ["Source Sans Pro", "sans-serif"].join(","), fontSize: 16 },
+      h6: { fontFamily: ["Source Sans Pro", "sans-serif"].join(","), fontSize: 14 },
     },
-
     components: {
-      MuiCssBaseline: {
+      MuiButton: {
         styleOverrides: {
-          body: {
-            backgroundColor: mode === "light" ? "#ffffff" : colors.primary[500],
-            color: mode === "light" ? "#333333" : colors.grey[100],
+          containedPrimary: {
+            backgroundColor: colors.purpleAccent[500],
+            '&:hover': {
+              backgroundColor: colors.purpleAccent[700],
+            },
           },
-        },
-      },
-      MuiInputLabel: {
-        styleOverrides: {
-          root: {
-            color: mode === "light" ? "#333333" : colors.grey[100],
-          },
-        },
-      },
-      MuiInputBase: {
-        styleOverrides: {
-          input: {
-            color: mode === "light" ? "#333333" : colors.grey[100],
-          },
-        },
-      },
-      MuiFormHelperText: {
-        styleOverrides: {
-          root: {
-            color: mode === "light" ? "#333333" : colors.grey[300],
+          containedSecondary: {
+            backgroundColor: colors.purpleAccent[800],
+            '&:hover': {
+              backgroundColor: colors.purpleAccent[700],
+            },
           },
         },
       },
@@ -242,7 +210,7 @@ export const ColorModeContext = createContext({
 });
 
 export const useMode = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
     () => ({
